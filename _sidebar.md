@@ -1,4 +1,5 @@
 <!-- root/_sidebar.md -->
 
-* [Home](/)
-* [Guide](/guide/)
+* [首页](/)
+* [算法](/algorithm/)
+* [项目](/project/)

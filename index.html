@@ -7,30 +7,65 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+  <!-- <link rel="stylesheet" href="//unpkg.com/gitalk@1.6.2/dist/gitalk.css"> -->
 </head>
 <body>
-  <nav>
-    <a href="#/">EN</a>
-    <a href="#/zh-cn/">中文</a>
-  </nav>
   <div id="app">Just waiting...</div>
+
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  <script src="//unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="//unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="//unpkg.com/docsify-demo-box-react@1.1.0/dist/docsify-demo-box-react.min.js"></script>
+
   <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js');
+    }
+    
+    var jsResources = '<scr' + 'ipt src="//unpkg.com/react@16/umd/react.production.min.js"></scr' + 'ipt>\n' +
+      '<scr' + 'ipt src="//unpkg.com/react-dom@16/umd/react-dom.production.min.js"></scr' + 'ipt>';
+    var cssResources = '';
+    var bootCode = ''
+
     window.$docsify = {
-      name: 'docsify',
-      repo: 'lanyuechen/doc',
-      loadSidebar: true,
-      subMaxLevel: 2,
+      name: 'Laplace',
+      formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',
+      search: {
+        placeholder: '搜索'
+      },
+      // repo: 'lanyuechen/doc',
       loadNavbar: true,
-      coverpage: true,
-      themeColor: '#3F51B5',
+      // auto2top: true,
+      loadSidebar: true,
+      subMaxLevel: 4,
+      plugins: [
+        DemoBoxReact.create(jsResources, cssResources, bootCode),
+        // EditOnGithubPlugin.create('https://github.com/lanyuechen/doc/blob/master/', undefined, '编辑'),
+        function(hook, vm) {
+          hook.beforeEach(function (html) {
+            var url = 'https://github.com/lanyuechen/doc/blob/master/' + vm.route.file
+
+            return '[Edit on github](' + url + ')\n'
+              + html
+              + '\n\n'
+              + 'Updated at {docsify-updated} by [lanyuechen](https://github.com/lanyuechen)'
+          })
+        },
+      ],
+      ga: 'UA-164129022-1',
+      // coverpage: true,
+      // themeColor: '#3F51B5',
     }
   </script>
-  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
-  <script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/ga.js"></script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
+  <!-- <script src="//unpkg.com/gitalk@1.6.2/dist/gitalk.min.js"></script> -->
+  <!-- <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script> -->
+  <!-- <script>
     const gitalk = new Gitalk({
       clientID: 'd862ba03a7071fdf6165',
       clientSecret: 'b61dc01d5a04fda84e127104a5d3a923523c2a15',
@@ -40,6 +75,6 @@
       // facebook-like distraction free mode
       distractionFreeMode: false
     })
-  </script>
+  </script> -->
 </body>
 </html>

@@ -7,15 +7,39 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
 </head>
 <body>
-  <div id="app"></div>
+  <nav>
+    <a href="#/">EN</a>
+    <a href="#/zh-cn/">中文</a>
+  </nav>
+  <div id="app">Just waiting...</div>
   <script>
     window.$docsify = {
-      name: '',
-      repo: ''
+      name: 'docsify',
+      repo: 'lanyuechen/doc',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      loadNavbar: true,
+      coverpage: true,
+      themeColor: '#3F51B5',
     }
   </script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: 'd862ba03a7071fdf6165',
+      clientSecret: 'b61dc01d5a04fda84e127104a5d3a923523c2a15',
+      repo: 'doc',
+      owner: 'lanyuechen',
+      admin: ['lanyuechen'],
+      // facebook-like distraction free mode
+      distractionFreeMode: false
+    })
+  </script>
 </body>
 </html>

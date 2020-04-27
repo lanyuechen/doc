@@ -77,8 +77,8 @@ function mapTree2(node, cb) {
         lastVisit = n;
       } else {
         s.push(n);
+        node = n.right;
       }
-      node = n.right;
     }
   }
 }
